@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PopAI</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+    }
+
+        header {
+            display: flex;
+            align-items: center;
+            color: black;
+            padding: 1rem;
+        }
+
+        header img {
+        width: 80px; /* Increase width */
+        height: 80px; /* Increase height */
+        margin-right: 10px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+        }
+
+        section {
+    display: none;
+    margin: auto;
+    text-align: center;
+    padding: 2rem;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+        #homepage {
+            display: block;
+        }
+
+        .nav-buttons {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-buttons button {
+            background-color: #e482e7;
+        color: black;
+        border: none;
+        border-radius: 50%;
+        width: 70px; /* Increased size */
+        height: 70px; /* Increased size */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem; /* Increased font size */
+        cursor: pointer;
+    }
+
+        .functional-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .functional-buttons button {
+            background-color: #82b2f0;
+            color: black;
+            border: none;
+            padding: 1rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .functional-buttons button img {
+        width: 30px; /* Increase width */
+        height: 30px; /* Increase height */
+        margin-right: 10px;
+        }
+
+        .input-box {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1rem;
+            width: 60%;
+            margin: auto;
+        }
+
+
+
+
+        #ai-chatpdf-response {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        }
+
+        
+
+        .response-box {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    width: 80%;
+    max-width: calc(100% - 2rem); /* Matches header width minus padding */
+    margin: 10px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+        /* Add the chat bubble tail */
+        .response-box::after {
+        content: '';
+        position: absolute;
+        bottom: -10px; /* Tail position relative to the box */
+        left: 20px; /* Adjust for tail alignment */
+        border-width: 10px;
+        border-style: solid;
+        border-color: #f1f1f1 transparent transparent transparent;
+        width: 0;
+        height: 0;
+    }
+
+        /* Style adjustments for text */
+        .response-box p {
+        margin: 5px 0;
+        color: #333;
+    }
+
+        .response-box p strong {
+        color: #000;
+    }
+
+    .input-box textarea {
+    width: 97%; /* Take full width of the parent box */
+    height: 200px; /* Set a fixed height */
+    resize: none; /* Disable resizing */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+
+    #writing-response-box {
+        background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    width: 80%;
+    max-width: calc(100% - 2rem); /* Matches header width minus padding */
+    margin: 10px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+#writing-response-box::after {
+    content: '';
+        position: absolute;
+        bottom: -10px; /* Tail position relative to the box */
+        left: 20px; /* Adjust for tail alignment */
+        border-width: 10px;
+        border-style: solid;
+        border-color: #f1f1f1 transparent transparent transparent;
+        width: 0;
+        height: 0;
+}
+
+#writing-response-box p {
+    margin: 5px 0;
+        color: #333;
+}
+
+#writing-response-box p strong {
+    color: #000;
+}
+
+#presentation-response-box {
+        background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    width: 80%;
+    max-width: calc(100% - 2rem); /* Matches header width minus padding */
+    margin: 10px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+#presentation-response-box::after {
+    content: '';
+        position: absolute;
+        bottom: -10px; /* Tail position relative to the box */
+        left: 20px; /* Adjust for tail alignment */
+        border-width: 10px;
+        border-style: solid;
+        border-color: #f1f1f1 transparent transparent transparent;
+        width: 0;
+        height: 0;
+}
+
+#presentation-response-box p {
+    margin: 5px 0;
+        color: #333;
+}
+
+#presentation-response-box p strong {
+    color: #000;
+}
+
+#paraphraser-response-box {
+        background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    width: 80%;
+    max-width: calc(100% - 2rem); /* Matches header width minus padding */
+    margin: 10px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+#paraphraser-response-box::after {
+    content: '';
+        position: absolute;
+        bottom: -10px; /* Tail position relative to the box */
+        left: 20px; /* Adjust for tail alignment */
+        border-width: 10px;
+        border-style: solid;
+        border-color: #f1f1f1 transparent transparent transparent;
+        width: 0;
+        height: 0;
+}
+
+#paraphraser-response-box p {
+    margin: 5px 0;
+        color: #333;
+}
+
+#paraphraser-response-box p strong {
+    color: #000;
+}
+
+        .progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .progress {
+            height: 20px;
+            background-color: #9438df;
+            border-radius: 4px;
+            text-align: center;
+            color: white;
+            line-height: 20px;
+        }
+
+        .button-action {
+            margin-top: 1rem;
+        }
+
+        .upload-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+    border: 2px dashed #ddd;
+    border-radius: 5px;
+    padding: 2rem;
+    cursor: pointer;
+    width: 80%;  /* Adjusted to be rectangular */
+    height: 150px;  /* Added height to make it rectangular */
+    text-align: center;
+    margin: 0 auto;  /* Centering the box horizontally */
+}
+
+.upload-box:hover {
+    background-color: #f0f0f0;
+    border-color: #bbb;
+}
+
+.upload-box .arrow-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+}
+
+#upload-pdf {
+    display: none;
+}
+
+/* Modal (Pop-up) Styles */
+.modal {
+            display: none; 
+            position: fixed;
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Badge Style Inside Modal */
+#badgeContainer .badge {
+    background-color: #f0f0f0;
+    margin: 10px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    display: inline-block;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="Logo.jpg" alt="popAI Logo">
+        <h1>PopAI</h1>
+    </header>
+    <main>
+        <!-- Homepage -->
+        <section id="homepage">
+            <h2>Ask, Chat, Present with AI</h2>
+            <div class="functional-buttons">
+                <button onclick="navigateTo('ai-chatpdf')"><img src="PDF.png" alt="ChatPDF">AI ChatPDF</button>
+                <button onclick="navigateTo('ai-writing')"><img src="Writing.jpg" alt="Writing">AI Writing</button>
+                <button onclick="navigateTo('ai-presentation')"><img src="Presentation.png" alt="Presentation">AI Presentation</button>
+                <button onclick="navigateTo('ai-paraphraser')"><img src="Paraphrase.png" alt="Paraphrase">AI Paraphraser</button>
+            </div>
+        </section>
+
+        <!-- AI ChatPDF -->
+        <section id="ai-chatpdf">
+            <h2>Read your PDF with AI</h2>
+            <div class="input-box">
+                <label for="upload-pdf" class="upload-box">
+                    <img src="Arrow.png" alt="Upload Arrow" class="arrow-icon">
+                    <span>Upload your PDF here</span>
+                </label>
+                <input type="file" id="upload-pdf" accept=".pdf" style="display: none;" onchange="showSelectedFile(event)">
+                <button onclick="showResponse('ai-chatpdf-response')"style="padding: 10px 20px; background-color: #5c06cc; color: white; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
+            </div>
+        </section>
+        <section id="ai-chatpdf-response">
+            <h2>AI ChatPDF Feedback</h2>
+            <div style="display: flex; justify-content: center; align-items: flex-start; max-height: 500px; overflow: scroll; padding: 40px; border: 1px solid #ddd; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); background-color: #fff;">
+                <img src="Feedback01.png" alt="Feedback Image" style="max-width: 100%; height: auto; margin-top: 0;">
+            </div>
+            <p style="text-align: center; margin-top: 10px;"><strong>Feedback Example:</strong> AI will read the PDF for you.</p>
+        </section>
+    
+        <!-- AI Writing -->
+<section id="ai-writing">
+    <h2>Write report, essay with AI</h2>
+    <div class="input-box">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px; width: 100%;">
+            <select id="word-count" style="width: 48%; padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+                <option value="short">Short (under 100 words)</option>
+                <option value="medium-short">Medium-short (101-500 words)</option>
+            </select>
+            <select id="form" style="width: 48%; padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+                <option value="general-writing">General Writing</option>
+                <option value="essay">Essay</option>
+                <option value="report">Report</option>
+            </select>
+        </div>
+        <input type="text" placeholder="Enter your topic here" style="width: 97%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 15px;">
+        <button onclick="showResponse('ai-writing-response')" style="padding: 12px 25px; background-color: #5c06cc; color: white; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
+    </div>
+</section>
+<section id="ai-writing-response">
+    <h2>AI Writing Feedback</h2>
+    <div style="display: flex; justify-content: center; align-items: flex-start; max-height: 500px; overflow: scroll; padding: 40px; border: 1px solid #ddd; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); background-color: #fff;">
+        <img src="Feedback02.png" alt="Feedback Icon" style="max-width: 100%; height: auto; margin-top: 0;">
+    </div>
+    <p style="text-align: center; margin-top: 10px;"><strong>Feedback Example:</strong> AI will generate the feedback based on user input.</p>
+</section>
+
+        <!-- AI Presentation -->
+        <section id="ai-presentation">
+            <h2>Presentation with AI</h2>
+            <div class="input-box">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <select id="pages" style="width: 48%; padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+                        <option value="short">7 pages</option>
+                        <option value="medium-short">10 pages</option>
+                        <option value="medium">15 pages</option>
+                    </select>
+                    <select id="form" style="width: 48%; padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+                        <option value="regular">Standard</option>
+                        <option value="brief">Brief</option>
+                    </select>
+                </div>
+                <input type="text" placeholder="Enter your topic here" style="width: 97%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 10px;">
+                <button onclick="showResponse('ai-presentation-response')" style="padding: 10px 20px; background-color: #5c06cc; color: white; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
+            </div>
+        </section>
+        <section id="ai-presentation-response">
+            <h2>AI Presentation Feedback</h2>
+            <div style="display: flex; justify-content: center; align-items: flex-start; max-height: 500px; overflow: scroll; padding: 40px; border: 1px solid #ddd; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); background-color: #fff;">
+                <img src="Feedback03.png" alt="Feedback Icon" style="max-width: 100%; height: auto; margin-top: 0;">
+            </div>
+            <p style="text-align: center; margin-top: 10px;"><strong>Feedback Example:</strong> AI will generate the feedback based on user input.</p>
+        </section>
+
+        <!-- AI Paraphraser -->
+        <section id="ai-paraphraser">
+            <h2>Paraphrase with AI</h2>
+            <div class="input-box">
+                <textarea placeholder="Enter text to paraphrase"></textarea>
+                <button onclick="showResponse('ai-paraphraser-response')"style="padding: 10px 20px; background-color: #5c06cc; color: white; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
+            </div>
+        </section>
+        <section id="ai-paraphraser-response">
+            <h2>AI Paraphraser Feedback</h2>
+            <div style="display: flex; justify-content: center; align-items: flex-start; max-height: 500px; overflow: scroll; padding: 40px; border: 1px solid #ddd; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); background-color: #fff;">
+                <img src="Feedback04.png" alt="Feedback Icon" style="max-width: 100%; height: auto; margin-top: 0;">
+            </div>
+            <p style="text-align: center; margin-top: 10px;"><strong>Feedback Example:</strong> AI will generate the feedback based on user input.</p>
+        </section>
+
+        <!-- Profile Page -->
+        <section id="profile-page">
+            <h2>Your Profile</h2>
+        <div class="response-box">
+        <p style="text-align: left; margin-bottom: 10px;"><strong>Name:</strong> User Name</p>
+        <p style="text-align: left; margin-bottom: 20px;"><strong>Email:</strong> user@example.com</p>
+
+        <div class="progress-bar" style="margin-bottom: 20px;">
+            <p style="text-align: left; margin-bottom: 15px;"><strong>AI ChatPDF:</strong></p>
+            <div class="progress" style="width: 25%;">1/4 tasks used today</div>
+        </div>
+
+        <div class="progress-bar" style="margin-bottom: 20px;">
+            <p style="text-align: left; margin-bottom: 15px;"><strong>AI Writing:</strong></p>
+            <div class="progress" style="width: 50%;">2/4 tasks used today</div>
+        </div>
+
+        <div class="progress-bar" style="margin-bottom: 20px;">
+            <p style="text-align: left; margin-bottom: 15px;"><strong>AI Presentation:</strong></p>
+            <div class="progress" style="width: 75%;">3/4 tasks used today</div>
+        </div>
+
+        <div class="progress-bar" style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="flex-grow: 1;">
+                <p style="text-align: left; margin-bottom: 15px;"><strong>AI Paraphraser:</strong></p>
+                <div class="progress" style="width: 100%;">4/4 tasks used today</div>
+            </div>
+            <!-- Claim Badge button with margin -->
+            <button id="claimBadgeBtn" onclick="claimBadge()" style="margin-left: 6px; padding: 10px 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Claim Badge
+            </button>
+        </div>
+
+        <button onclick="showResponse('chat-history-response')" style="padding: 12px 25px; background-color: #5c06cc; color: white; border: none; border-radius: 5px; cursor: pointer;">Chat History</button>
+        <button class="button-action" onclick="showLogoutAlert()" style="padding: 12px 25px; background-color: #5c06cc; color: white; border: none; border-radius: 5px; cursor: pointer;">Log Out</button>
+
+<!-- Logout Modal -->
+<div id="logoutModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeLogoutModal()">&times;</span>
+        <h2>Are you sure you want to log out?</h2>
+        <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+            <button onclick="logoutConfirmed()" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px;">Yes</button>
+            <button onclick="closeLogoutModal()" style="padding: 10px 20px; background-color: #dc3545; color: white; border: none; border-radius: 5px;">No</button>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <!-- Badge Collection Button (Trigger for Modal) -->
+    <div class="badge-button">
+        <button id="viewCollectionBtn" onclick="openModal()" style="padding: 10px 15px; background-color: #cf3f8e; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            View Badge Collection
+        </button>
+    </div>
+</section>
+
+<!-- Badge Modal -->
+<div id="badgeModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Your Badges Collection</h2>
+        <div id="badgeContainer">
+            <!-- Badges will be displayed here -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal for displaying badge -->
+<div id="claimBadgeModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeClaimBadgeModal()">&times;</span>
+        <h2>Congratulations!</h2>
+        <img src="badge02.png" alt="Badge" style="width: 150px; height: auto; margin: 20px 0;">
+        <p>You have received Kitty Badge!</p>
+    </div>
+</div>
+
+<!-- Chat History Section -->
+<section id="chat-history-response">
+    <div style="display: flex; justify-content: center; align-items: flex-start; max-height: 500px; overflow: scroll; padding: 40px; border: 1px solid #ddd; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); background-color: #fff;">
+        <img src="Feedback05.png" alt="Feedback Icon" style="max-width: 100%; height: auto; margin-top: 0;">
+    </div>
+    <p style="text-align: center; margin-top: 10px;"><strong>Content Example:</strong> Your Chat History will be shown here.</p>
+</section>
+
+<!-- Navigation Buttons -->
+<div class="nav-buttons">
+    <button onclick="navigateTo('homepage')">&#8962;</button>
+    <button onclick="navigateTo('profile-page')">&#128100;</button>
+</div>
+
+<script>
+    // Array to store claimed badges
+    var claimedBadges = ['badge.png', 'badge2.png', 'badge3.png']; // Add past badges here
+
+    // Open modal for badge collection
+    function openModal() {
+        document.getElementById('badgeModal').style.display = 'block';
+        loadBadges(); // Load the badges into the modal when opened
+    }
+
+    // Close modal
+    function closeModal() {
+        document.getElementById('badgeModal').style.display = 'none';
+    }
+
+    // Close claim badge modal
+    function closeClaimBadgeModal() {
+        document.getElementById('claimBadgeModal').style.display = 'none';
+    }
+
+    // Claim Badge functionality (no alert)
+function claimBadge() {
+    // Add a new badge to the collection
+    var newBadge = 'badge02.png';  // Replace with your actual badge logic
+    claimedBadges.push(newBadge); // Add the badge to the array
+    openClaimBadgeModal(); // Show the badge claim modal
+}
+
+    // Open the claim badge modal
+function openClaimBadgeModal() {
+    document.getElementById('claimBadgeModal').style.display = 'block';
+}
+
+    // Load all claimed badges into the modal
+    function loadBadges() {
+        var badgeContainer = document.getElementById("badgeContainer");
+        badgeContainer.innerHTML = ''; // Clear previous badges
+        claimedBadges.forEach(function(badge) {
+            var badgeElement = document.createElement("div");
+            badgeElement.className = 'badge';
+            
+            var img = document.createElement("img");
+            img.src = badge;  // Display each badge image
+            img.alt = badge;
+            img.style.width = '80px'; // Customize badge size
+            img.style.height = '80px'; // Customize badge size
+
+            badgeElement.appendChild(img);
+            badgeContainer.appendChild(badgeElement);
+        });
+    }
+
+    // Close the modal if the user clicks outside of the modal content
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('badgeModal')) {
+            closeModal();
+        }
+    }
+
+    // Navigate to different sections
+    function navigateTo(sectionId) {
+        document.querySelectorAll('section').forEach(section => section.style.display = 'none');
+        document.getElementById(sectionId).style.display = 'block';
+    }
+
+    // Show a specific response
+    function showResponse(responseId) {
+        navigateTo(responseId);
+    }
+
+    // Show the logout confirmation modal
+function showLogoutAlert() {
+    var modal = document.getElementById('logoutModal');
+    modal.style.display = 'flex'; // Show modal
+    modal.style.justifyContent = 'center'; // Center horizontally
+    modal.style.alignItems = 'center'; // Center vertically
+    modal.style.position = 'fixed'; // Ensure it's fixed on the screen
+    modal.style.top = '0';
+    modal.style.left = '0';
+    modal.style.width = '100%';
+    modal.style.height = '100%';
+    modal.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'; // Dark background
+}
+
+// Close the logout modal
+function closeLogoutModal() {
+    document.getElementById('logoutModal').style.display = 'none'; // Hide modal
+}
+
+// If user confirms logout, clear session and reload page
+function logoutConfirmed() {
+    // Clear session or any necessary data
+    sessionStorage.clear();
+    localStorage.clear();
+    
+    // Reload page or navigate to home
+    location.reload(); // Optionally reload the page
+}
+</script>
+</body>
+</html>
