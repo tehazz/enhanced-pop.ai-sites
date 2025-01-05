@@ -108,7 +108,81 @@
         }
 
 
+        /* Media Query for Tablets (max-width: 768px) */
+@media only screen and (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0.5rem;
+        text-align: center;
+    }
 
+    header img {
+        width: 60px; /* Adjusted for tablets */
+        height: 60px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .nav-buttons {
+        flex-wrap: wrap;
+        gap: 1rem;
+        bottom: 2rem;
+    }
+
+    .nav-buttons button {
+        width: 60px; /* Adjusted size */
+        height: 60px;
+        font-size: 1rem;
+    }
+
+    section {
+        width: 90%;
+        margin: 20px auto;
+        padding: 1.5rem;
+    }
+
+    .input-box {
+        width: 90%;
+    }
+}
+
+/* Media Query for Phones (max-width: 480px) */
+@media only screen and (max-width: 480px) {
+    header img {
+        width: 50px; /* Adjusted for phones */
+        height: 50px;
+    }
+
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    .nav-buttons button {
+        width: 50px; /* Smaller button size */
+        height: 50px;
+        font-size: 0.9rem;
+    }
+
+    .functional-buttons button {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    .input-box {
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+
+    .response-box {
+        width: 95%;
+    }
+}
 
         #ai-chatpdf-response {
         font-family: Arial, sans-serif;
