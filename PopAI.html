@@ -117,91 +117,70 @@
 
 
         /* Media Query for Tablets (max-width: 768px) */
-@media only screen and (max-width: 768px) {
-    header {
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 0.5rem;
-        text-align: center;
-    
-    }
+/* Media Query for Tablets (max-width: 768px) */
+        @media only screen and (max-width: 768px) {
+            header img {
+                width: 60px;
+                height: 60px;
+            }
 
-    .functional-buttons {
-            flex-direction: column; /* Stack buttons vertically */
-            gap: 1rem;
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            section {
+                width: 90%;
+            }
+
+            .nav-buttons {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .nav-buttons button {
+                width: 60px;
+                height: 60px;
+                font-size: 1rem;
+            }
+
+            .functional-buttons button {
+                width: 90%;
+                font-size: 0.9rem;
+            }
+
+            .input-box {
+                width: 90%;
+            }
         }
 
-        .functional-buttons button {
-            width: 90%; /* Reduce button width for tablets */
-        }
+        @media only screen and (max-width: 480px) {
+            header img {
+                width: 50px;
+                height: 50px;
+            }
 
-    header img {
-        width: 60px; /* Adjusted for tablets */
-        height: 60px;
-    }
+            header h1 {
+                font-size: 1.2rem;
+            }
 
-    header h1 {
-        font-size: 1.5rem;
-    }
+            .nav-buttons button {
+                width: 50px;
+                height: 50px;
+                font-size: 0.9rem;
+            }
 
-    .nav-buttons {
-        flex-wrap: wrap;
-        gap: 1rem;
-        bottom: 2rem;
-    }
+            .functional-buttons button {
+                width: 100%;
+                font-size: 0.8rem;
+            }
 
-    .nav-buttons button {
-        width: 60px; /* Adjusted size */
-        height: 60px;
-        font-size: 1rem;
-    }
+            .input-box {
+                width: 95%;
+            }
 
-    section {
-        width: 90%;
-        padding: 1.5rem;
-    }
-
-    .input-box {
-        width: 90%;
-    }
-}
-
-/* Media Query for Phones (max-width: 480px) */
-@media only screen and (max-width: 480px) {
-    header img {
-        width: 50px; /* Adjusted for phones */
-        height: 50px;
-    }
-
-    section {
-            width: 100%; /* Full width for phones */
-            padding: 1rem;
-        }
-
-    header h1 {
-        font-size: 1.2rem;
-    }
-
-    .nav-buttons {
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            border-radius: 10px;
-        }
-
-        .nav-buttons button {
-            width: 100%; /* Full width on smaller screens */
-            font-size: 1rem; /* Reduce font size */
-            height: 60px; /* Adjust button size */
-        }
-
-        .functional-buttons button {
-            width: 100%; /* Full button width */
-            font-size: 0.9rem; /* Reduce font size */
-        }
-
-        .input-box {
-            width: 90%; /* Adjust input box width */
+            section {
+                width: 95%;
+            }
         }
 
         .response-box,
