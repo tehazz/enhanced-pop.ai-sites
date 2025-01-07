@@ -108,52 +108,39 @@
         }
 
 
-        /* Media Query for Tablets (max-width: 768px) */
-@media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 768px) {
     header {
         flex-wrap: wrap;
         justify-content: center;
         padding: 0.5rem;
         text-align: center;
-    
     }
 
-    .functional-buttons {
-            display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-        }
-
-        .functional-buttons button {
-            flex: 1 1 45%; /* Allow buttons to take up 45% of the container width */
-    max-width: 120px; /* Prevent them from growing too large */
-    margin: 0.5rem; /* Ensure spacing between buttons */
-        }
-
     header img {
-        width: 60px; /* Adjusted for tablets */
-        height: 60px;
+        width: 50px; /* Adjust for smaller screens */
+        height: 50px;
     }
 
     header h1 {
-        font-size: 1.5rem;
-    }
-
-    .nav-buttons {
-        display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    }
-
-    .nav-buttons button {
-        flex: 1 1 45%; /* Allow buttons to take up 45% of the container width */
-    max-width: 120px; /* Prevent them from growing too large */
-    margin: 0.5rem; /* Ensure spacing between buttons */
+        font-size: 1.2rem; /* Unified for smaller devices */
     }
 
     section {
-        width: 90%;
-        padding: 1.5rem;
+        width: 90%; /* Adapted for both tablets and phones */
+        padding: 1rem;
+    }
+
+    .functional-buttons, .nav-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .functional-buttons button, .nav-buttons button {
+        flex: 1 1 45%; /* Allow buttons to share the space */
+        max-width: 120px;
+        min-width: 80px; /* Prevent squishing */
+        margin: 0.5rem;
     }
 
     .input-box {
@@ -161,41 +148,6 @@
     }
 }
 
-/* Media Query for Phones (max-width: 480px) */
-@media only screen and (max-width: 480px) {
-    header img {
-        width: 50px; /* Adjusted for phones */
-        height: 50px;
-    }
-
-    section {
-            width: 100%; /* Full width for phones */
-            padding: 1rem;
-        }
-
-    header h1 {
-        font-size: 1.2rem;
-    }
-
-    .nav-buttons {
-             display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-        }
-
-        .nav-buttons button {
-            min-width: 80px;  /* Prevents squishing */
-    margin: 0.5rem;   /* Adds spacing */
-        }
-
-        .functional-buttons button {
-            min-width: 80px;  /* Prevents squishing */
-    margin: 0.5rem;   /* Adds spacing */
-        }
-
-        .input-box {
-            width: 90%; /* Adjust input box width */
-        }
 
         .response-box,
         #writing-response-box,
