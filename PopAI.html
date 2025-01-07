@@ -125,38 +125,25 @@ button {
     padding: 0.5rem 1rem;
 }
 
-/* Media Query for Tablets (max-width: 768px) */
-@media only screen and (max-width: 768px) {
+/* Tablet Styles (min-width: 481px) */
+@media (min-width: 481px) {
     header {
-        flex-wrap: wrap;
-        justify-content: center;
-        text-align: center;
-        padding: 0.5rem;
+        flex-direction: row;
+        justify-content: space-between;
     }
 
     header img {
-        width: 60px;
+        width: 60px; /* Slightly larger on tablets */
         height: 60px;
     }
 
-    header h1 {
-        font-size: 1.5rem;
-    }
-
-    .functional-buttons, .nav-buttons {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .functional-buttons button, .nav-buttons button {
-        flex: 1 1 45%;
-        max-width: 120px;
-        margin: 0.5rem;
+    button {
+        flex: 1 1 45%; /* Two buttons per row */
     }
 
     section {
         width: 90%;
-        padding: 1.5rem;
+        margin: 0 auto;
     }
 
     .input-box {
@@ -164,31 +151,28 @@ button {
     }
 }
 
-/* Media Query for Phones (max-width: 480px) */
-@media only screen and (max-width: 480px) {
-    header img {
-        width: 50px;
-        height: 50px;
+/* Desktop Styles (min-width: 769px) */
+@media (min-width: 769px) {
+    header {
+        padding: 2rem;
     }
 
-    header h1 {
-        font-size: 1.2rem;
+    header img {
+        width: 80px; /* Larger logo for desktops */
+        height: 80px;
+    }
+
+    button {
+        flex: 0 1 auto; /* Buttons adjust naturally */
     }
 
     section {
-        width: 100%;
-        padding: 1rem;
-    }
-
-    .functional-buttons button, .nav-buttons button {
-        flex: 1 1 100%;
-        min-width: 80px;
-        max-width: none;
-        margin: 0.5rem;
+        width: 70%;
+        margin: 0 auto;
     }
 
     .input-box {
-        width: 100%;
+        width: 70%;
     }
 }
 
