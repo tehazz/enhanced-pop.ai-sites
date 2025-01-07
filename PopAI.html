@@ -119,14 +119,14 @@
     }
 
     .functional-buttons {
-            flex-direction: column; /* Stack buttons vertically */
-            gap: 1rem;
-        display: flex;
-        justify-content: center;
+            display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
         }
 
         .functional-buttons button {
-            width: 90%; /* Reduce button width for tablets */
+            min-width: 80px;  /* Prevents squishing */
+    margin: 0.5rem;   /* Adds spacing */
         }
 
     header img {
@@ -139,17 +139,14 @@
     }
 
     .nav-buttons {
-        flex-wrap: wrap;
-        gap: 1rem;
-        bottom: 2rem;
         display: flex;
-        justify-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
     }
 
     .nav-buttons button {
-        width: 60px; /* Adjusted size */
-        height: 60px;
-        font-size: 1rem;
+        min-width: 80px;  /* Prevents squishing */
+    margin: 0.5rem;   /* Adds spacing */
     }
 
     section {
@@ -179,25 +176,19 @@
     }
 
     .nav-buttons {
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            border-radius: 10px;
-        display: flex;
-        justify-content: center;
+             display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
         }
 
         .nav-buttons button {
-            width: 100%; /* Full width on smaller screens */
-            font-size: 1rem; /* Reduce font size */
-            height: 60px; /* Adjust button size */
+            min-width: 80px;  /* Prevents squishing */
+    margin: 0.5rem;   /* Adds spacing */
         }
 
         .functional-buttons button {
-            width: 100%; /* Full button width */
-            font-size: 0.9rem; /* Reduce font size */
-            display: flex;
-        justify-content: center;
+            min-width: 80px;  /* Prevents squishing */
+    margin: 0.5rem;   /* Adds spacing */
         }
 
         .input-box {
